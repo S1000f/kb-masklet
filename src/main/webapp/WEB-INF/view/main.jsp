@@ -22,6 +22,31 @@
     <div class="container">
         <h2>Hello world</h2>
         <h3>This is main page of Masklet</h3>
+        <div class="result">
+            <div class="result-header">
+                <h4>${storesByAddr.address}<br />count: ${storesByAddr.count}</h4>
+            </div>
+            <div class="result-table">
+                <c:if test="${! empty storesByAddr}" >
+                    <table>
+                        <tr>
+                            <th><spring:message code="pharm.name" /></th>
+                            <th><spring:message code="address" /></th>
+                            <th><spring:message code="remainStat" /></th>
+                            <th><spring:message code="createdAt" /></th>
+                        </tr>
+                        <c:forEach var="store" items="${storesByAddr.storesList}">
+                        <tr>
+                            <td>${store.name}</td>
+                            <td>${store.addr}</td>
+                            <td>${store.remainStat}</td>
+                            <td>${store.createdAt}</td>
+                        </tr>
+                        </c:forEach>
+                    </table>
+                </c:if>
+            </div>
+        </div>
     </div>
 </body>
 </html>
