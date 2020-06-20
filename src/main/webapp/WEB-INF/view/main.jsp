@@ -20,28 +20,62 @@
 </style>
 <body>
     <div class="container">
-        <h2>Hello world</h2>
-        <h3>This is main page of Masklet</h3>
+        <div class="header">
+            <h2>Hello world</h2>
+            <h3>This is main page of Masklet</h3>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top">
+            <form:form action="" modelAttribute="" class="form-inline">
+                <label for="sel1">광역시/도:</label>&nbsp;
+                <select class="form-control mr-sm-3" id="sel1" name="sellist1" >
+                    <option>대구광역시</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <label for="sel2">시/군/구: </label>&nbsp;
+                <select class="form-control mr-sm-3" id="sel2" name="sellist2">
+                    <option>북구</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <label for="sel3">읍/면/동: </label>&nbsp;
+                <select class="form-control mr-sm-3" id="sel3" name="sellist3">
+                    <option>복현동</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <button class="btn btn-success" type="submit">Search</button>
+            </form:form>
+        </nav>
         <div class="result">
             <div class="result-header">
-                <h4>${storesByAddr.address}<br />count: ${storesByAddr.count}</h4>
+                <h4>${storesByAddr.address}<br />검색결과: ${storesByAddr.count}</h4>
             </div>
             <div class="result-table">
                 <c:if test="${! empty storesByAddr}" >
-                    <table>
-                        <tr>
-                            <th><spring:message code="pharm.name" /></th>
-                            <th><spring:message code="address" /></th>
-                            <th><spring:message code="remainStat" /></th>
-                            <th><spring:message code="createdAt" /></th>
-                        </tr>
-                        <c:forEach var="store" items="${storesByAddr.storesList}">
-                        <tr>
-                            <td>${store.name}</td>
-                            <td>${store.addr}</td>
-                            <td>${store.remainStat}</td>
-                            <td>${store.createdAt}</td>
-                        </tr>
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th><spring:message code="rownum" /></th>
+                                <th><spring:message code="pharm.name" /></th>
+                                <th><spring:message code="address" /></th>
+                                <th><spring:message code="remainStat" /></th>
+                                <th><spring:message code="createdAt" /></th>
+                            </tr>
+                        </thead>
+                        <c:forEach var="store" items="${storesByAddr.storesList}" varStatus="status">
+                            <tr>
+                                <td>${status.index +1 }</td>
+                                <td>${store.name}</td>
+                                <td>${store.addr}</td>
+                                <td>${store.remainStat}</td>
+                                <td>${store.createdAt}</td>
+                            </tr>
                         </c:forEach>
                     </table>
                 </c:if>
@@ -50,4 +84,3 @@
     </div>
 </body>
 </html>
-
