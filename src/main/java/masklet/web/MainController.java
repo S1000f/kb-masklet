@@ -1,30 +1,35 @@
 package masklet.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import masklet.service.ApiUrlProvider;
+import masklet.service.StoresByAddrService;
+import masklet.web.model.AddressCommand;
 import masklet.web.model.StoresByAddr;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLEncoder;
 
 @Controller
 public class MainController {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    @RequestMapping("/")
-    public String main(Model model) throws IOException {
-        String apiURL = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=";
-        String address = "대구광역시 북구";
-        String encodedAddress = URLEncoder.encode(address, "utf-8");
+    @GetMapping("/")
+    public String main(AddressCommand addressCommand) {
+        return "main";
+    }
 
-        String url = apiURL + encodedAddress;
+    @PostMapping("/")
+    public String storesByAddr(AddressCommand addressCommand, Model model) throws IOException {
+        ApiUrlProvider apiUrlProvider = new StoresByAddrService(addressCommand);
+        URL url = apiUrlProvider.getApiUrl();
 
-        StoresByAddr storesByAddr = mapper.readValue(new URL(url), StoresByAddr.class);
+        StoresByAddr storesByAddr = mapper.readValue(url, StoresByAddr.class);
         model.addAttribute("storesByAddr", storesByAddr);
 
         return "main";

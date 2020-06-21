@@ -22,33 +22,27 @@
     <div class="container">
         <div class="header">
             <h2>Hello world</h2>
-            <h3>This is main page of Masklet</h3>
+            <h3>This is a pilot of Masklet</h3>
         </div>
     </div>
     <div class="container">
         <nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top">
-            <form:form action="" modelAttribute="" class="form-inline">
-                <label for="sel1">광역시/도:</label>&nbsp;
-                <select class="form-control mr-sm-3" id="sel1" name="sellist1" >
-                    <option>대구광역시</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-                <label for="sel2">시/군/구: </label>&nbsp;
-                <select class="form-control mr-sm-3" id="sel2" name="sellist2">
-                    <option>북구</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-                <label for="sel3">읍/면/동: </label>&nbsp;
-                <select class="form-control mr-sm-3" id="sel3" name="sellist3">
-                    <option>복현동</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
+            <form:form modelAttribute="addressCommand" class="form-inline">
+                <label for="city">광역시/도:</label>&nbsp;
+                <form:select path="city" class="form-control mr-sm-3">
+                    <form:option value="대구광역시" />
+                </form:select>
+                <label for="gu">시/군/구: </label>&nbsp;
+                <form:select path="gu" class="form-control mr-sm-3">
+                    <form:option value="북구" />
+                </form:select>
+                <label for="dong">읍/면/동: </label>&nbsp;
+                <form:select  path="dong" class="form-control mr-sm-3">
+                    <form:option value="">--전체--</form:option>
+                    <form:option value="복현동" />
+                    <form:option value="대현동" />
+                    <form:option value="산격동" />
+                </form:select>
                 <button class="btn btn-success" type="submit">Search</button>
             </form:form>
         </nav>
