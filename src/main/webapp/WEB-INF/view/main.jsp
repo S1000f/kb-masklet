@@ -25,8 +25,8 @@
             <h3>This is a pilot of Masklet</h3>
         </div>
     </div>
-    <div class="container">
-        <nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top">
+    <div class="container-md">
+        <nav class="navbar navbar-expand-sm bg-light navbar-light sticky-top shadow">
             <form:form modelAttribute="addressCommand" class="form-inline">
                 <label for="city">광역시/도:</label>&nbsp;
                 <form:select path="city" class="form-control mr-sm-3">
@@ -48,6 +48,7 @@
         </nav>
         <div class="result">
             <div class="result-header">
+                <br />
                 <h5>검색결과: ${storesByAddr.count} 개</h5>
                 범례: <span class="badge badge-success"><spring:message code="plenty" />: 약 100개 이상</span>
                 <span class="badge badge-warning"><spring:message code="some" />: 약 99 ~ 30개</span>
