@@ -10,6 +10,8 @@ import java.net.URLEncoder;
 @Component
 public class StoresByAddrService implements ApiUrlProvider {
 
+    private static final String STORES_BY_ADDR =
+            "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=";
     private AddressCommand addressCommand;
 
     public StoresByAddrService() {
@@ -21,17 +23,17 @@ public class StoresByAddrService implements ApiUrlProvider {
 
     @Override
     public URL getApiUrl() throws IOException {
-        String apiURL = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=";
-        String address =
-                addressCommand.getCity() + " " + addressCommand.getGu();
+
+        StringBuilder address = new StringBuilder();
+        address.append(addressCommand.getCity()).append(" ").append(addressCommand.getGu());
+
         if (! addressCommand.getDong().isEmpty()) {
-            address += " " + addressCommand.getDong();
+            address.append(" ").append(addressCommand.getDong());
         }
-        String encodedAddress = URLEncoder.encode(address, "utf-8");
 
-        String strUrl = apiURL + encodedAddress;
+        String encodedAddress = URLEncoder.encode(address.toString(), "utf-8");
 
-        return new URL(strUrl);
+        return new URL(STORES_BY_ADDR + encodedAddress);
     }
 
     public static Builder builder() {
