@@ -29,7 +29,10 @@ public class MainController {
     @PostMapping("/")
     public String storesByAddr(AddressCommand addressCommand, Model model) throws IOException {
 
-        storesByAddrService.setAddressCommand(addressCommand);
+        storesByAddrService = StoresByAddrService.builder()
+                .address(addressCommand)
+                .build();
+
         URL url = storesByAddrService.getApiUrl();
 
         StoresByAddr storesByAddr = mapper.readValue(url, StoresByAddr.class);
