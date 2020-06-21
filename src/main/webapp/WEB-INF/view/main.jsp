@@ -21,7 +21,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>Hello world</h2>
+            <h2>Masklet</h2>
             <h3>This is a pilot of Masklet</h3>
         </div>
     </div>
@@ -48,7 +48,12 @@
         </nav>
         <div class="result">
             <div class="result-header">
-                <h5>검색결과: ${storesByAddr.count}</h5>
+                <h5>검색결과: ${storesByAddr.count} 개</h5>
+                범례: <span class="badge badge-success"><spring:message code="plenty" />: 약 100개 이상</span>
+                <span class="badge badge-warning"><spring:message code="some" />: 약 99 ~ 30개</span>
+                <span class="badge badge-danger"><spring:message code="few" />: 약 29 ~ 2개</span>
+                <span class="badge badge-secondary"><spring:message code="empty" />: 1 ~ 0개</span>
+                <span class="badge badge-dark"><spring:message code="break" />: 현재 재고소진으로 판매중지</span>
             </div>
             <div class="result-table">
                 <c:if test="${! empty storesByAddr}" >

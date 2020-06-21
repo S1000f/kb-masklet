@@ -1,5 +1,6 @@
 package masklet.service;
 
+import lombok.Setter;
 import masklet.web.model.AddressCommand;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ public class StoresByAddrService implements ApiUrlProvider {
 
     private static final String STORES_BY_ADDR =
             "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=";
+    @Setter
     private AddressCommand addressCommand;
 
     public StoresByAddrService() {
