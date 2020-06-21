@@ -48,7 +48,7 @@
         </nav>
         <div class="result">
             <div class="result-header">
-                <h4>${storesByAddr.address}<br />검색결과: ${storesByAddr.count}</h4>
+                <h5>검색결과: ${storesByAddr.count}</h5>
             </div>
             <div class="result-table">
                 <c:if test="${! empty storesByAddr}" >
@@ -67,7 +67,33 @@
                                 <td>${status.index +1 }</td>
                                 <td>${store.name}</td>
                                 <td>${store.addr}</td>
-                                <td>${store.remainStat}</td>
+                                <td>
+                                    <c:if test="${store.remainStat == 'plenty'}" >
+                                        <h6><span class="badge badge-success">
+                                            <spring:message code="${store.remainStat}" />
+                                        </span></h6>
+                                    </c:if>
+                                    <c:if test="${store.remainStat == 'some'}" >
+                                        <span class="badge badge-warning">
+                                            <spring:message code="${store.remainStat}" />
+                                        </span>
+                                    </c:if>
+                                    <c:if test="${store.remainStat == 'few'}" >
+                                        <span class="badge badge-danger">
+                                            <spring:message code="${store.remainStat}" />
+                                        </span>
+                                    </c:if>
+                                    <c:if test="${store.remainStat == 'empty'}" >
+                                        <span class="badge badge-secondary">
+                                            <spring:message code="${store.remainStat}" />
+                                        </span>
+                                    </c:if>
+                                    <c:if test="${store.remainStat == 'break'}" >
+                                        <span class="badge badge-dark">
+                                            <spring:message code="${store.remainStat}" />
+                                        </span>
+                                    </c:if>
+                                </td>
                                 <td>${store.createdAt}</td>
                             </tr>
                         </c:forEach>
